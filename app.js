@@ -1,4 +1,8 @@
+var alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"," "];
+
 var activecaps = false
+
+var a = document.querySelectorAll("a")
 
 var input = document.getElementsByTagName("input")[0]
 
@@ -8,12 +12,15 @@ window.addEventListener("load", () => {
     input.focus()
 })
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-  
-
 window.addEventListener("keydown", (e) => {
+    for(i = 0; i < alphabet.length; i++) {
+        if(e.key.toUpperCase() == alphabet[i]) {
+            input.value += e.key
+        }
+    }
+    if (e.keyCode == 8) {
+        input.value = input.value.slice(0, -1)
+    }
     document.getElementsByClassName(`key c${e.keyCode}`)[0].classList.add("keydown")
     if(!activecaps) {
             if(e.keyCode == 20) {
